@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-import 'dart:async';
+import 'dart:math';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:once/once.dart';
 
 void main() {
@@ -16,45 +15,115 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  String currentValue = 'Hello World';
 
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await Once.platformVersion ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
+  void set(String newOnce) {
     setState(() {
-      _platformVersion = platformVersion;
+      currentValue = newOnce + ' ${Random().nextInt(100)}';
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.deepPurple,
+        primarySwatch: Colors.deepPurple,
+      ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Once Made with ❤️'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    child: const Text("Run On New Version"),
+                    onPressed: () {
+                      Once.runOnce("New Version", () {
+                        set("Hello New Version");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Only Once"),
+                    onPressed: () {
+                      Once.runOnce("Once", () {
+                        set("Hello Only Once");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Hourly"),
+                    onPressed: () {
+                      Once.runHourly("Hourly", () {
+                        set("Hello Hourly");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Every 12 Hour"),
+                    onPressed: () {
+                      Once.runEvery12Hours("12 Hour", () {
+                        set("Hello 12 Hour");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Daily"),
+                    onPressed: () {
+                      Once.runDaily("Daily", () {
+                        set("Hello Daily");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Weekly"),
+                    onPressed: () {
+                      Once.runWeekly("Weekly", () {
+                        set("Hello Weekly");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run On New Month"),
+                    onPressed: () {
+                      Once.runOnNewMonth("New Month", () {
+                        set("Hello New Month");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Monthly"),
+                    onPressed: () {
+                      Once.runMonthly("Monthly", () {
+                        set("Hello Monthly");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Yearly"),
+                    onPressed: () {
+                      Once.runYearly("Yearly", () {
+                        set("Hello Yearly");
+                      });
+                    }),
+                ElevatedButton(
+                    child: const Text("Run Evert 5 Sec"),
+                    onPressed: () {
+                      Once.runCustom(
+                        "Custom",
+                        () => set("Hello Custom"),
+                        duration: const Duration(seconds: 5),
+                      );
+                    }),
+                const SizedBox(
+                  height: 22,
+                ),
+                Text(
+                  currentValue,
+                  style: const TextStyle(
+                    fontSize: 28,
+                  ),
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
