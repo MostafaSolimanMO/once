@@ -10,7 +10,7 @@ Some things should happen **once**.
 * Your app should only phone home to update content _once every hour_.
 * Etc.. _once every (What ever you want)_.
 
-`Once` supports `runOnce`, `runEvery12Hours`, `runHourly`, `runDaily`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `Custom (Duration)`.
+`Once` supports `runOnce`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `Custom (Duration)`.
 
 ## Usage
 ### Done on the time that you want the thing to be _done_
