@@ -1,21 +1,20 @@
 # once
 
-Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new vetsion - Any Custom duration)? We got your back.
+Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any Custom duration)? We got your back.
 
 ----
 
 Some things should happen **once**.
-* Users should only get the guided tour _once_. 
-* Release notes should only pop up _once every mew app version come_. 
-* Your app should only phone home to update content _once every hour_.
-* Etc.. _once every (What ever you want)_.
+* Users should only get the guided tour _once_.
+* Release notes should only pop up _once every new app version comes_.
+* Etc.. _once every (Whatever you want)_.
 
 `Once` supports `runOnce`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `Custom (Duration)`.
 
 ## Usage
 ### Done on the time that you want the thing to be _done_
 
-Now you're ready to go. Say you wanted to show the new features dialog when the app is updated: 
+Now you're ready to go. Say you wanted to show the new features dialog when the app is updated:
 
 ```dart
 Once.runOnEveryNewVersion(() {

@@ -1,7 +1,7 @@
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Once Durations in millisecands
+/// Once Durations in milliseconds
 const _year = _day * 365;
 const _week = _day * 7;
 const _day = 86400000;
@@ -25,14 +25,15 @@ abstract class Once {
 
     /// Run only Monthly
     if (duration == -1) {
-      final monthMillisec = (_daysInMonth(currentMonth, currentYear) * _day);
+      final monthMilliseconds =
+          (_daysInMonth(currentMonth, currentYear) * _day);
       if (prefs.containsKey(key)) {
         final savedTime = prefs.getInt(key)!;
 
         if (savedTime <= currentTime) {
           prefs.setInt(
             key,
-            savedTime + monthMillisec,
+            savedTime + monthMilliseconds,
           );
           return callback.call();
         }
@@ -41,7 +42,7 @@ abstract class Once {
 
       prefs.setInt(
         key,
-        currentTime + monthMillisec,
+        currentTime + monthMilliseconds,
       );
       return callback.call();
     }
@@ -63,9 +64,9 @@ abstract class Once {
     /// Run any other once options
     if (prefs.containsKey(key)) {
       final savedTime = prefs.getInt(key)!;
-      final diffrance = currentTime - savedTime;
+      final difference = currentTime - savedTime;
 
-      if (diffrance > duration) return callback.call();
+      if (difference > duration) return callback.call();
     }
     prefs.setInt(key, currentTime);
     return callback.call();
