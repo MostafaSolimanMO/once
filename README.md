@@ -35,5 +35,7 @@ if (!rated){
 * [Mostafa Soliman](https://github.com/MostafaSolimanMO)
 * [Nour Magdi](https://github.com/SPiercer)
 
+## Please check the [Changelog](https://github.com/MostafaSolimanMO) for new updates
+
 
 inspired by the java library [Once](https://github.com/jonfinerty/Once) made by [Jon Finerty](https://github.com/jonfinerty)
