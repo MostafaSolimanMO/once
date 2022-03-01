@@ -1,8 +1,6 @@
-# 1.1.0
+# 1.1.2
 
-- Fix bugs
-- Add [flutter_once](https://pub.dev/packages/flutter_once) to `ReadME`
-
+- Down
 # 1.1.0
 
 - Fix bugs
