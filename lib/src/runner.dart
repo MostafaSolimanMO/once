@@ -19,6 +19,8 @@ abstract class OnceRunner {
     if (duration == -2 && !preferences.containsKey(key)) {
       preferences.setString(key, 'once');
       return callback.call();
+    } else if (duration == -2 && preferences.containsKey(key)) {
+      return fallback?.call();
     }
 
     /// Run only Monthly
