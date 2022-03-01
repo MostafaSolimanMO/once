@@ -1,23 +1,18 @@
-## 1.0.0
+# 1.1.0
 
-* initial release.
-
-## 2.0.0
-
-* all periodic functions now are returning a nullable generic typed Future `Future<T?>`
-* you can now use `FutureBuilder` to return a widget from `once` like so 
+- Fix bugs
+- All periodic functions now are returning a nullable generic typed Future `Future<T?>`
+- Add `fallback`  in case if that callback future returns null
   * ```dart
-    FutureBuilder<Widget?>(
-        future: Once.runDaily<Widget?>(
-            "MyKey",
-            (){/* handling the callback to return a [Widget] or [null] */},
-        ),
-        builder: (_, snapshot) {
-            if (snapshot.hasData) {
-                return snapshot.data!;
-            } else {
-                /* handling a fallback widget if [myNullableWidget] returns null */
-            }
-        },
-    )
+    Once.runOnEveryNewVersion(
+      callback: () {
+        /* */
+      },
+      fallback: () {
+        /* */
+      },
+    );
     ```
+# 1.0.0
+
+- initial release.
