@@ -1,6 +1,6 @@
 # once
 
-Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any Custom duration)? We got your back.
+Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any  custom duration)? We cove your back.
 
 ----
 
@@ -12,22 +12,35 @@ Some things should happen **once**.
 `Once` supports `runOnce`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `Custom (Duration)`.
 
 ## Usage
-### Done on the time that you want the thing to be _done_
+
+**Mainly runner functions consists of callbacks and fallbacks**
+* `callback` are the generic functions that run and returns a `future<T?>` . 
+* `fallback` are the same but only runs in case if that callback future returns null.
 
 Now you're ready to go. Say you wanted to show the new features dialog when the app is updated:
 
 ```dart
-Once.runOnEveryNewVersion(() {
+Once.runOnEveryNewVersion(
+  callback: () {
     /* What's new in 2.3.2 version? dialog */
-});
+  },
+  fallback: () {
+   /* Navigate to new screen */
+  },
+);
 ```
 
 Or maybe you want to show the rate this app dialog every week for the user:
 ```dart
 if (!rated){
-  Once.runWeekly("ratingDialog",() { 
+  Once.runWeekly("ratingDialog",
+  callback: () { 
     /* Like our app, Please rate us. dialog */ 
-  });
+   },
+  fallback: () {
+    /* Thanks */
+   },
+  );
 }
 ```
 

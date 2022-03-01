@@ -17,10 +17,29 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   String currentValue = 'Hello World';
 
+  @override
+  void initState() {
+    Once.runOnce(
+      'my-app-widget',
+      callback: () => set('Once Started'),
+    );
+    Once.runOnEveryNewVersion(
+      callback: () {
+        /* What's new in 2.3.2 version? dialog */
+      },
+      fallback: () {
+        /* Navigate to new screen */
+      },
+    );
+    super.initState();
+  }
+
   void set(String newOnce) {
-    setState(() {
-      currentValue = newOnce + ' ${Random().nextInt(100)}';
-    });
+    setState(
+      () {
+        currentValue = newOnce + ' ${Random().nextInt(100)}';
+      },
+    );
   }
 
   @override
@@ -40,77 +59,69 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    child: const Text("Run On New Version"),
-                    onPressed: () {
-                      Once.runOnce("New Version", () {
-                        set("Hello New Version");
-                      });
-                    }),
+                  child: const Text("Run On New Version"),
+                  onPressed: () {
+                    Once.runOnEveryNewVersion(
+                      callback: () => set("Hello New Version"),
+                      fallback: () => set('Okay its not new version'),
+                    );
+                  },
+                ),
                 ElevatedButton(
-                    child: const Text("Run Only Once"),
-                    onPressed: () {
-                      Once.runOnce("Once", () {
-                        set("Hello Only Once");
-                      });
-                    }),
+                  child: const Text("Run Hourly"),
+                  onPressed: () {
+                    Once.runHourly(
+                      "Hourly",
+                      callback: () => set("Hello Hourly"),
+                    );
+                  },
+                ),
                 ElevatedButton(
-                    child: const Text("Run Hourly"),
-                    onPressed: () {
-                      Once.runHourly("Hourly", () {
-                        set("Hello Hourly");
-                      });
-                    }),
+                  child: const Text("Run Every 12 Hour"),
+                  onPressed: () {
+                    Once.runEvery12Hours(
+                      "12 Hour",
+                      callback: () => set("Hello 12 Hour"),
+                    );
+                  },
+                ),
                 ElevatedButton(
-                    child: const Text("Run Every 12 Hour"),
-                    onPressed: () {
-                      Once.runEvery12Hours("12 Hour", () {
-                        set("Hello 12 Hour");
-                      });
-                    }),
+                  child: const Text("Run Daily"),
+                  onPressed: () {
+                    Once.runDaily(
+                      "Daily",
+                      callback: () => set("Hello Daily"),
+                    );
+                  },
+                ),
                 ElevatedButton(
-                    child: const Text("Run Daily"),
-                    onPressed: () {
-                      Once.runDaily("Daily", () {
-                        set("Hello Daily");
-                      });
-                    }),
+                  child: const Text("Run On New Month"),
+                  onPressed: () {
+                    Once.runOnNewMonth(
+                      "New Month",
+                      callback: () => set("Hello New Month"),
+                      fallback: () => set("Hello New Month Fallback"),
+                    );
+                  },
+                ),
                 ElevatedButton(
-                    child: const Text("Run Weekly"),
-                    onPressed: () {
-                      Once.runWeekly("Weekly", () {
-                        set("Hello Weekly");
-                      });
-                    }),
+                  child: const Text("Run Monthly"),
+                  onPressed: () {
+                    Once.runMonthly("Monthly x",
+                        callback: () => set("Hello Monthly"),
+                        fallback: () => set('Hello Monthly Fallback'));
+                  },
+                ),
                 ElevatedButton(
-                    child: const Text("Run On New Month"),
-                    onPressed: () {
-                      Once.runOnNewMonth("New Month", () {
-                        set("Hello New Month");
-                      });
-                    }),
-                ElevatedButton(
-                    child: const Text("Run Monthly"),
-                    onPressed: () {
-                      Once.runMonthly("Monthly", () {
-                        set("Hello Monthly");
-                      });
-                    }),
-                ElevatedButton(
-                    child: const Text("Run Yearly"),
-                    onPressed: () {
-                      Once.runYearly("Yearly", () {
-                        set("Hello Yearly");
-                      });
-                    }),
-                ElevatedButton(
-                    child: const Text("Run Evert 5 Sec"),
-                    onPressed: () {
-                      Once.runCustom(
-                        "Custom",
-                        () => set("Hello Custom"),
-                        duration: const Duration(seconds: 5),
-                      );
-                    }),
+                  child: const Text("Run Evert 5 Sec"),
+                  onPressed: () {
+                    Once.runCustom(
+                      "x",
+                      duration: const Duration(seconds: 5),
+                      callback: () => set("Hello Custom"),
+                    );
+                  },
+                ),
                 const SizedBox(
                   height: 22,
                 ),

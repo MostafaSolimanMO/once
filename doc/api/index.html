@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="generator" content="made with love by dartdoc 5.0.1">
+  <meta name="description" content="once API docs, for the Dart programming language.">
+  <title>once - Dart API docs</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="static-assets/github.css?v1">
+  <link rel="stylesheet" href="static-assets/styles.css?v1">
+  <link rel="icon" href="static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href=""
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="https://github.com/MostafaSolimanMO/once">once package</a></li>
+  </ol>
+  <div class="self-name">once</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      
+<section class="desc markdown">
+  <h1 id="once">once</h1>
+<p>Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any  custom duration)? We cove your back.</p>
+<hr>
+<p>Some things should happen <strong>once</strong>.</p>
+<ul>
+<li>Users should only get the guided tour <em>once</em>.</li>
+<li>Release notes should only pop up <em>once every new app version comes</em>.</li>
+<li>Etc.. <em>once every (Whatever you want)</em>.</li>
+</ul>
+<p><code>Once</code> supports <code>runOnce</code>, <code>runOnEveryNewVersion</code>, <code>runEvery12Hours</code>, <code>runHourly</code>, <code>runDaily</code>, <code>runWeekly</code>, <code>runMonthly</code>, <code>runOnNewMonth</code>, <code>runYearly</code> and <code>Custom (Duration)</code>.</p>
+<h2 id="usage">Usage</h2>
+<p><strong>Mainly runner functions consists of callbacks and fallbacks</strong></p>
+<ul>
+<li><code>callback</code> are the generic functions that run and returns a <code>future&lt;T?&gt;</code> .</li>
+<li><code>fallback</code> are the same but only runs in case if that callback future returns null.</li>
+</ul>
+<p>Now you're ready to go. Say you wanted to show the new features dialog when the app is updated:</p>
+<pre class="language-dart"><code class="language-dart">Once.runOnEveryNewVersion(
+  callback: () {
+    /* What's new in 2.3.2 version? dialog */
+  },
+  fallback: () {
+   /* Navigate to new screen */
+  },
+);
+</code></pre>
+<p>Or maybe you want to show the rate this app dialog every week for the user:</p>
+<pre class="language-dart"><code class="language-dart">if (!rated){
+  Once.runWeekly("ratingDialog",
+  callback: () { 
+    /* Like our app, Please rate us. dialog */ 
+   },
+  fallback: () {
+    /* Thanks */
+   },
+  );
+}
+</code></pre>
+<h2 id="contributors">Contributors</h2>
+<ul>
+<li><a href="https://github.com/MostafaSolimanMO">Mostafa Soliman</a></li>
+<li><a href="https://github.com/SPiercer">Nour Magdi</a></li>
+</ul>
+<p>inspired by the java library <a href="https://github.com/jonfinerty/Once">Once</a> made by <a href="https://github.com/jonfinerty">Jon Finerty</a></p>
+</section>
+
+
+      <section class="summary">
+          <h2>Libraries</h2>
+        <dl>
+          <dt id="once">
+  <span class="name"><a href="once/once-library.html">once</a></span> 
+
+</dt>
+<dd> 
+</dd>
+
+        </dl>
+      </section>
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="https://github.com/MostafaSolimanMO/once">once package</a></li>
+</ol>
+
+
+    <h5 class="hidden-xs"><span class="package-name">once</span> <span class="package-kind">package</span></h5>
+    <ol>
+      <li class="section-title">Libraries</li>
+      <li><a href="once/once-library.html">once</a></li>
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div>
+
+</main>
+
+<footer>
+  <span class="no-break">
+    once
+      1.1.0
+  </span>
+
+  
+</footer>
+
+
+
+<script src="static-assets/highlight.pack.js?v1"></script>
+<script src="static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
