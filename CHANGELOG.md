@@ -3,16 +3,7 @@
 - Fix bugs
 - All periodic functions now are returning a nullable generic typed Future `Future<T?>`
 - Add `fallback`  in case if that callback future returns null
-  * ```dart
-    Once.runOnEveryNewVersion(
-      callback: () {
-        /* */
-      },
-      fallback: () {
-        /* */
-      },
-    );
-    ```
+
 # 1.0.0
 
 - initial release.
