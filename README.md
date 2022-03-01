@@ -1,6 +1,8 @@
 # once
 
-Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any  custom duration)? We cove your back.
+### For Once widgets use [flutter_once](https://pub.dev/packages/flutter_once)
+
+Want to run a piece of code once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any  custom duration)? We cove your back.  
 
 ----
 
@@ -32,14 +34,14 @@ Once.runOnEveryNewVersion(
 
 Or maybe you want to show the rate this app dialog every week for the user:
 ```dart
-if (!rated){
+if (!rated) {
   Once.runWeekly("ratingDialog",
-  callback: () { 
-    /* Like our app, Please rate us. dialog */ 
-   },
-  fallback: () {
-    /* Thanks */
-   },
+    callback: () { 
+       /* Like our app, Please rate us. dialog */ 
+    },
+    fallback: () {
+      /* Thanks */
+    },
   );
 }
 ```
