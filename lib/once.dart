@@ -7,10 +7,10 @@ const _week = _day * 7;
 const _day = 86400000;
 
 abstract class Once {
-  static Future<void> _run({
+  static Future<T?> _run<T>({
     required String key,
     required int duration,
-    required void Function() callback,
+    required T? Function() callback,
   }) async {
     final prefs = await SharedPreferences.getInstance();
     final currentTime = DateTime.now().millisecondsSinceEpoch;
@@ -37,7 +37,7 @@ abstract class Once {
           );
           return callback.call();
         }
-        return;
+        return null;
       }
 
       prefs.setInt(
@@ -56,6 +56,7 @@ abstract class Once {
           prefs.setInt(key, duration);
           return callback.call();
         }
+        return null;
       }
       prefs.setInt(key, duration);
       return callback.call();
@@ -67,13 +68,14 @@ abstract class Once {
       final difference = currentTime - savedTime;
 
       if (difference > duration) return callback.call();
+      return null;
     }
     prefs.setInt(key, currentTime);
     return callback.call();
   }
 
-  static Future<void> _runOnNewVersion({
-    required void Function() callback,
+  static Future<T?> _runOnNewVersion<T>({
+    required T? Function() callback,
   }) async {
     const key = 'ON_NEW_VERSION';
     final prefs = await SharedPreferences.getInstance();
@@ -93,19 +95,19 @@ abstract class Once {
     return callback.call();
   }
 
-  static void runOnce(
+  static Future<T?> runOnce<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
-      _run(
+      _run<T>(
         key: key,
         duration: 0,
         callback: callback,
       );
 
-  static void runEvery12Hours(
+  static Future<T?> runEvery12Hours<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -113,9 +115,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runHourly(
+  static Future<T?> runHourly<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -123,9 +125,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runDaily(
+  static Future<T?> runDaily<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -133,9 +135,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runWeekly(
+  static Future<T?> runWeekly<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -143,9 +145,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runMonthly(
+  static Future<T?> runMonthly<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -153,9 +155,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runOnNewMonth(
+  static Future<T?> runOnNewMonth<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -163,9 +165,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runYearly(
+  static Future<T?> runYearly<T>(
     String key,
-    void Function() callback,
+    T? Function() callback,
   ) =>
       _run(
         key: key,
@@ -173,9 +175,9 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runCustom(
+  static Future<T?> runCustom<T>(
     String key,
-    void Function() callback, {
+    T? Function() callback, {
     required Duration duration,
   }) =>
       _run(
@@ -184,8 +186,8 @@ abstract class Once {
         callback: callback,
       );
 
-  static void runOnEveryNewVersion(
-    void Function() callback,
+  static Future<T?> runOnEveryNewVersion<T>(
+    T? Function() callback,
   ) =>
       _runOnNewVersion(
         callback: callback,

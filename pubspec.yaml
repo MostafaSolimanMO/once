@@ -1,6 +1,6 @@
 name: once
-description: Want to run a piece of code once (Only - Week - Month - Year - Any duration)? We got you.
-version: 1.0.0
+description: Want to run a piece of code once periodically (Daily - Weekly - Monthly - Yearly - Any period)? We got you.
+version: 2.0.0
 homepage: https://github.com/MostafaSolimanMO/once
 
 environment:
