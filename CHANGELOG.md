@@ -1,3 +1,7 @@
+# 1.2.1
+
+- ReadMe.md Update 
+
 # 1.2.0
 
 - Add `WidgetOnce` that return `Widget`
@@ -13,7 +17,6 @@
 - Fix bugs
 - All periodic functions now are returning a nullable generic typed Future `Future<T?>`
 - Add `fallback`  in case if that callback future returns null
-
 
 # 1.0.0
 

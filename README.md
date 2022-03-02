@@ -8,22 +8,22 @@ Some things should happen **once**.
 * Release notes should only pop up _once every new app version comes_.
 * Etc.. _once every (Whatever you want)_.
 
-`Once` supports `runOnce`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runOnNewDay`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `Custom (Duration)`.
+`Once` supports `runOnce`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runOnNewDay`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `runCustom`.
 
 Some widgets should show **once**.
-* Users should only get the guided widget _OnceWidget_.
-* Release notes widget should only pop up _OnceWidget every new app version comes_.
+* Users should only get this alert _OnceWidget_.
+* Hello it new version widget shows _OnceWidget every new app version comes_.
 * Etc.. _OnceWidget every (Whatever you want)_.
 
-`OnceWidgets` supports `showOnce`, `showOnEveryNewVersion`, `showEvery12Hours`, `showHourly`, `showDaily`, `showOnNewDay`, `showWeekly`, `showMonthly`, `showOnNewMonth`, `showYearly` and `Custom (Duration)`.
+`OnceWidgets` supports `showOnce`, `showOnEveryNewVersion`, `showEvery12Hours`, `showHourly`, `showDaily`, `showOnNewDay`, `showWeekly`, `showMonthly`, `showOnNewMonth`, `showYearly` and `showCustom`.
 
 # Usage
 
 ## Once
 
 **Mainly runner functions consists of callbacks and fallbacks**
-* `callback` are the generic functions that run and returns a `future<T?>` . 
-* `fallback` are the same but only runs in case if that callback future returns null.
+* `callback` is the generic function that runs and returns a `future<T?>` . 
+* `fallback` is the same but only runs in case that callback future returns null.
 
 Now you're ready to go. Say you wanted to show the new features dialog when the app is updated:
 
@@ -70,7 +70,7 @@ OnceWidget.showOnEveryNewVersion(
 
 Or maybe you want to show the rate this app dialog every week for the user:
 ```dart
-OnceWidget.showWeekly("ratingDialog",
+OnceWidget.showWeekly("weekWidget",
   builder: () {
      return Text('Hello, New Week');
    },
