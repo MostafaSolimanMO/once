@@ -25,7 +25,7 @@ Some widgets should show **once**.
 * `callback` is the generic function that runs and returns a `future<T?>` . 
 * `fallback` is the same but only runs in case that callback future returns null.
 
-Now you're ready to go. Say you wanted to show the new features dialog when the app is updated:
+Now you're ready to go. Say you wanted to show the new features dialog when new version of the app come:
 
 ```dart
 Once.runOnEveryNewVersion(
@@ -38,7 +38,7 @@ Once.runOnEveryNewVersion(
 );
 ```
 
-Or maybe you want to show the rate this app dialog every week for the user:
+Or maybe you want to show the rate this app dialog weekly:
 ```dart
 if (!rated) {
   Once.runWeekly("ratingDialog",
@@ -68,7 +68,7 @@ OnceWidget.showOnEveryNewVersion(
 );
 ```
 
-Or maybe you want to show the rate this app dialog every week for the user:
+Or maybe you want to show the hello new week widget weekly:
 ```dart
 OnceWidget.showWeekly("weekWidget",
   builder: () {
