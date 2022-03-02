@@ -58,6 +58,29 @@ class _MyAppState extends State<MyApp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                OnceWidget.showOnEveryNewVersion(
+                  builder: () {
+                    return const Text('Hey, It new app version, Smile!');
+                  },
+                  fallback: () {
+                    return const Text('Welcome back');
+                  },
+                ),
+                OnceWidget.showOnce(
+                  'onceWidget',
+                  builder: () {
+                    return const Text('Hey, I am the once widget');
+                  },
+                  fallback: () {
+                    return const Text('I am not the one widget');
+                  },
+                ),
+                OnceWidget.showEvery12Hours(
+                  'widgetEvery12Hours',
+                  builder: () {
+                    return const Text('Hey, I am the every12Hours widget');
+                  },
+                ),
                 ElevatedButton(
                   child: const Text("Run On New Version"),
                   onPressed: () {

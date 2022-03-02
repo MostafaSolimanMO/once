@@ -13,6 +13,7 @@ abstract class OnceRunner {
     final preferences = await SharedPreferences.getInstance();
     final currentTime = DateTime.now().millisecondsSinceEpoch;
     final currentMonth = DateTime.now().month;
+    final currentWeekday = DateTime.now().weekday;
     final currentYear = DateTime.now().year;
 
     /// Run only Once
@@ -44,6 +45,21 @@ abstract class OnceRunner {
         key,
         currentTime + monthMilliseconds,
       );
+      return callback.call();
+    }
+
+    /// Run only on every start of day
+    if (duration == -3) {
+      if (preferences.containsKey(key)) {
+        final savedWeekday = preferences.getInt(key)!;
+
+        if (savedWeekday != currentWeekday) {
+          preferences.setInt(key, currentWeekday);
+          return callback.call();
+        }
+        return fallback?.call();
+      }
+      preferences.setInt(key, currentWeekday);
       return callback.call();
     }
 
