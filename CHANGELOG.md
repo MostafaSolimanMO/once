@@ -8,7 +8,7 @@
   * `debugCallback` used to debug the `callback` function.
   * `debugFallback` used to debug the `fallback` function.
 
-- Add prefix to the `key` to make it unique **No changes requires**.
+- Add prefix to the `key` to make it unique **No changes required**.
 
 # 1.3.0
 
