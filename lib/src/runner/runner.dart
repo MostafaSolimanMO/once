@@ -175,7 +175,7 @@ abstract class OnceRunner {
     required String key,
   }) async {
     final preferences = await SharedPreferences.getInstance();
-    preferences.remove(key);
+    preferences.remove('$_keyPrefix$key');
   }
 
   /// Clear cache for all Once package keys
