@@ -1,3 +1,23 @@
+# 1.4.0
+
+- Add Functions
+  * `clear` removes the `Once` or `OnceWidget` data for a specific `key`.
+  * `clearAll` removes all the `Once` and `OnceWidget` data.
+   
+- Add debug parameters that only works in debug mode
+  * `debugCallback` used to debug the `callback` function.
+  * `debugFallback` used to debug the `fallback` function.
+
+- Add prefix to the `key` to make it unique **No changes required**.
+
+# 1.3.0
+
+- Add `BuildContext` to the `builder` and `fallback` of `WidgetOnce`
+ 
+# 1.2.1
+
+- ReadMe.md Update 
+
 # 1.2.0
 
 - Add `WidgetOnce` that return `Widget`
@@ -13,7 +33,6 @@
 - Fix bugs
 - All periodic functions now are returning a nullable generic typed Future `Future<T?>`
 - Add `fallback`  in case if that callback future returns null
-
 
 # 1.0.0
 

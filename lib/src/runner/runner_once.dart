@@ -6,11 +6,15 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: -2,
       callback: callback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -19,11 +23,15 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: Const.day ~/ 2,
       callback: callback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -32,12 +40,16 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: Const.day ~/ 24,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -48,12 +60,16 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: Const.day,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -64,12 +80,16 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: -3,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -78,12 +98,16 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: Const.week,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -92,12 +116,16 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: -1,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -106,26 +134,34 @@ abstract class Once {
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: DateTime.now().month,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
-  //A generic callback that runs on an yearly basis
+  /// A generic callback that runs on an yearly basis
   static Future<T?> runYearly<T>(
     String key, {
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: Const.year,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -136,12 +172,16 @@ abstract class Once {
     required T? Function() callback,
     T? Function()? fallback,
     required Duration duration,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.run(
       key: key,
       duration: duration.inMilliseconds,
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
   }
 
@@ -149,10 +189,26 @@ abstract class Once {
   static Future<T?> runOnEveryNewVersion<T>({
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceRunner.runOnNewVersion(
       callback: callback,
       fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
     );
+  }
+
+  /// Clear OnceBuilder cache for a specific [key]
+  static void clear({
+    required String key,
+  }) {
+    OnceRunner.clear(key: key);
+  }
+
+  /// Clear OnceBuilder cache for all keys
+  static void clearAll() {
+    OnceRunner.clearAll();
   }
 }

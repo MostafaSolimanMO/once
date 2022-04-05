@@ -9,9 +9,15 @@ abstract class OnceWidget {
   static FutureBuilder<Widget?> showOnEveryNewVersion<T>({
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
-      Once.runOnEveryNewVersion(callback: builder),
+      Once.runOnEveryNewVersion(
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
       fallback,
     );
   }
@@ -21,9 +27,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
-      Once.runOnce(key, callback: builder),
+      Once.runOnce(
+        key,
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
       fallback,
     );
   }
@@ -33,9 +46,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
-      Once.runEvery12Hours(key, callback: builder),
+      Once.runEvery12Hours(
+        key,
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
       fallback,
     );
   }
@@ -45,9 +65,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
-      Once.runHourly(key, callback: builder),
+      Once.runHourly(
+        key,
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
       fallback,
     );
   }
@@ -59,9 +86,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
-      Once.runDaily(key, callback: builder),
+      Once.runDaily(
+        key,
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
       fallback,
     );
   }
@@ -73,9 +107,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
-      Once.runOnNewDay(key, callback: builder),
+      Once.runOnNewDay(
+        key,
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
       fallback,
     );
   }
@@ -85,12 +126,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
       OnceRunner.run(
         key: key,
         duration: Const.week,
         callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
       ),
       fallback,
     );
@@ -101,12 +146,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
       OnceRunner.run(
         key: key,
         duration: -1,
         callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
       ),
       fallback,
     );
@@ -117,12 +166,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
       OnceRunner.run(
         key: key,
         duration: DateTime.now().month,
         callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
       ),
       fallback,
     );
@@ -133,12 +186,16 @@ abstract class OnceWidget {
     String key, {
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
       OnceRunner.run(
         key: key,
         duration: Const.year,
         callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
       ),
       fallback,
     );
@@ -151,14 +208,30 @@ abstract class OnceWidget {
     required Duration duration,
     required Widget? Function() builder,
     Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) {
     return OnceBuilder.build(
       OnceRunner.run(
         key: key,
         duration: duration.inMilliseconds,
         callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
       ),
       fallback,
     );
+  }
+
+  /// Clear OnceBuilder cache for a specific [key]
+  static void clear({
+    required String key,
+  }) {
+    OnceRunner.clear(key: key);
+  }
+
+  /// Clear OnceBuilder cache for all keys
+  static void clearAll() {
+    OnceRunner.clearAll();
   }
 }
