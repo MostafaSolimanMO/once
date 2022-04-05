@@ -1,3 +1,19 @@
+# 1.4.0
+
+- Add Functions
+  * `clear` removes the `Once` or `OnceWidget` data for a specific `key`.
+  * `clearAll` removes all the `Once` and `OnceWidget` data.
+   
+- Add debug parameters that only works in debug mode
+  * `debugCallback` used to debug the `callback` function.
+  * `debugFallback` used to debug the `fallback` function.
+
+- Add prefix to the `key` to make it unique **No changes requires**.
+
+# 1.3.0
+
+- Add `BuildContext` to the `builder` and `fallback` of `WidgetOnce`
+ 
 # 1.2.1
 
 - ReadMe.md Update 

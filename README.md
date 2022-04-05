@@ -55,14 +55,14 @@ if (!rated) {
 ## OnceWidget
 
 **Mainly builder functions consists of builders and fallbacks**
-* `builder` is the generic function that shows and returns a `Widget` .
-* `fallback` is the same but only shows in case that callback future returns null (defaults to `SizedBox.shrink()`).
+* `builder` is the generic function that shows and returns a `Widget` and provide for `BuildContext`.
+* `fallback` is the same but only shows in case that callback future returns null (defaults to `SizedBox.shrink()`) and provide for `BuildContext`.
 
 Now you're ready to go. Say you wanted to view a banner widget when the app is updated:
 
 ```dart
 OnceWidget.showOnEveryNewVersion(
-  builder: () {
+  builder: (context) {
    return Container(...);
   },
 );
@@ -71,18 +71,31 @@ OnceWidget.showOnEveryNewVersion(
 Or maybe you want to show the hello new week widget weekly:
 ```dart
 OnceWidget.showWeekly("weekWidget",
-  builder: () {
+  builder: (context) {
      return Text('Hello, New Week');
    },
-  fallback: () {
+  fallback: (context) {
      return Text('Hello!');
    },
 );
 
 ```
+
+## Additional
+
+### Functions
+* `clear` removes the `Once` or `OnceWidget` data for a specific `key`.
+* `clearAll` removes all the `Once` and `OnceWidget` data.
+
+### Parameters
+* `debugCallback` used to debug the `callback` function.
+* `debugFallback` used to debug the `fallback` function.
+  
+**Note:** The debug parameters are only works in debug mode.
+
 ## Contributors
 * [Mostafa Soliman](https://github.com/MostafaSolimanMO)
 * [Nour Magdi](https://github.com/SPiercer)
 
 
-inspired by the java library [Once](https://github.com/jonfinerty/Once) made by [Jon Finerty](https://github.com/jonfinerty)
+Inspired by the Java library [Once](https://github.com/jonfinerty/Once) made by [Jon Finerty](https://github.com/jonfinerty)

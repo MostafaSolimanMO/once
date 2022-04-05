@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:once/src/const.dart';
 import 'package:once/src/utils.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+const _keyPrefix = 'ONCE_PACKAGE_';
 
 abstract class OnceRunner {
   static Future<T?> run<T>({
@@ -9,12 +12,46 @@ abstract class OnceRunner {
     required int duration,
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) async {
     final preferences = await SharedPreferences.getInstance();
     final currentTime = DateTime.now().millisecondsSinceEpoch;
     final currentMonth = DateTime.now().month;
     final currentWeekday = DateTime.now().weekday;
     final currentYear = DateTime.now().year;
+
+    /// if the debug mode is enabled, we will not check
+    /// the cache and run the callback function
+    if (debugCallback && kDebugMode) {
+      return callback.call();
+    }
+
+    /// if the debug mode is enabled, we will not check
+    /// the cache and run the fallback function
+    if (debugFallback && kDebugMode) {
+      return fallback?.call();
+    }
+
+    /// Add ONCE_PREFIX to the key if it doesn't exist and
+    /// if the key itself it exists, add the sane value
+    /// to the key with the prefix
+    if (preferences.containsKey(key)) {
+      if (!key.contains(_keyPrefix)) {
+        if (preferences.get(key) == 'once') {
+          preferences.remove(key);
+          key = '$_keyPrefix$key';
+          preferences.setString(key, 'once');
+        } else {
+          int? currentValue = preferences.getInt(key);
+          preferences.remove(key);
+          key = '$_keyPrefix$key';
+          preferences.setInt(key, currentValue!);
+        }
+      }
+    } else {
+      key = '$_keyPrefix$key';
+    }
 
     /// Run only Once
     if (duration == -2 && !preferences.containsKey(key)) {
@@ -99,7 +136,21 @@ abstract class OnceRunner {
   static Future<T?> runOnNewVersion<T>({
     required T? Function() callback,
     T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
   }) async {
+    /// if the debug mode is enabled, we will not check
+    /// the cache and run the callback function
+    if (debugCallback && kDebugMode) {
+      return callback.call();
+    }
+
+    /// if the debug mode is enabled, we will not check
+    /// the cache and run the fallback function
+    if (debugFallback && kDebugMode) {
+      return fallback?.call();
+    }
+
     const key = 'ON_NEW_VERSION';
     final preferences = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -117,5 +168,23 @@ abstract class OnceRunner {
     }
     preferences.setString(key, currentVersion);
     return callback.call();
+  }
+
+  /// Clear cache for a specific [key]
+  static void clear({
+    required String key,
+  }) async {
+    final preferences = await SharedPreferences.getInstance();
+    preferences.remove(key);
+  }
+
+  /// Clear cache for all Once package keys
+  static void clearAll() async {
+    final preferences = await SharedPreferences.getInstance();
+    for (final key in preferences.getKeys()) {
+      if (key.contains(_keyPrefix)) {
+        preferences.remove(key);
+      }
+    }
   }
 }

@@ -136,6 +136,17 @@ class _MyAppState extends State<MyApp> {
                   },
                 ),
                 ElevatedButton(
+                  child: const Text("Run Monthly Debug"),
+                  onPressed: () {
+                    Once.runMonthly(
+                      "Monthly debug",
+                      callback: () => set("Hello Monthly"),
+                      fallback: () => set('Hello Monthly Fallback'),
+                      debugCallback: true,
+                    );
+                  },
+                ),
+                ElevatedButton(
                   child: const Text("Run Evert 5 Sec"),
                   onPressed: () {
                     Once.runCustom(
