@@ -1,3 +1,8 @@
+# 1.5.0
+
+- fix: `runOnce` & `runEvery12Hours` fallback wasn't working properly
+- chore: update dependencies
+
 # 1.4.1
 
 - fix: clear key was missing the prefix 

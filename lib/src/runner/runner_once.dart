@@ -13,6 +13,7 @@ abstract class Once {
       key: key,
       duration: -2,
       callback: callback,
+      fallback: fallback,
       debugCallback: debugCallback,
       debugFallback: debugFallback,
     );
@@ -30,6 +31,7 @@ abstract class Once {
       key: key,
       duration: Const.day ~/ 2,
       callback: callback,
+      fallback: fallback,
       debugCallback: debugCallback,
       debugFallback: debugFallback,
     );
