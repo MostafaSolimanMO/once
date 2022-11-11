@@ -1,4 +1,5 @@
-# once
+# once [![pub](https://img.shields.io/pub/v/once?color=blue)](https://pub.dev/packages/once)
+
 
 Want to run/show a piece of code/widget once (Once - Hourly - Daily - Weekly - Monthly - Every new version - Any custom duration)? We cove your back.  
 
