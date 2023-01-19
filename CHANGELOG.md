@@ -1,3 +1,8 @@
+# 1.5.1
+
+- fix: `OnceBuilder.fallback()` is always called at least one time when specified
+- chore: update dependencies
+
 # 1.5.0
 
 - fix: `runOnce` & `runEvery12Hours` fallback wasn't working properly
