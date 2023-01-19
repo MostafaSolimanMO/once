@@ -9,7 +9,9 @@ abstract class OnceBuilder {
     return FutureBuilder<Widget?>(
       future: future,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox.shrink();
+        } else if (snapshot.hasData) {
           return snapshot.data!;
         } else {
           return fallback?.call() ?? const SizedBox.shrink();
