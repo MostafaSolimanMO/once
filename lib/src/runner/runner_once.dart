@@ -189,12 +189,16 @@ abstract class Once {
 
   /// A generic callback that runs each time the app version changes
   static Future<T?> runOnEveryNewVersion<T>({
+    /// Key used to runOnEveryNewVersion in multiple places
+    /// without key it will run only once
+    String uniqueKey = 'once_version',
     required T? Function() callback,
     T? Function()? fallback,
     bool debugCallback = false,
     bool debugFallback = false,
   }) {
     return OnceRunner.runOnNewVersion(
+      uniqueKey: uniqueKey,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,

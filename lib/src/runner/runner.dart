@@ -134,6 +134,9 @@ abstract class OnceRunner {
 
   /// Runs only on every new app number version
   static Future<T?> runOnNewVersion<T>({
+    /// Key used to runOnEveryNewVersion in multiple places
+    /// without key it will run only once
+    String uniqueKey = 'runOnNewVersion',
     required T? Function() callback,
     T? Function()? fallback,
     bool debugCallback = false,
@@ -151,7 +154,7 @@ abstract class OnceRunner {
       return fallback?.call();
     }
 
-    const key = 'ON_NEW_VERSION';
+    final key = 'ON_NEW_VERSION$uniqueKey';
     final preferences = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentVersion = packageInfo.version;
