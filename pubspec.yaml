@@ -1,16 +1,16 @@
 name: once
 description: Want to run a piece of code once periodically (Once - Daily - Weekly - Monthly - On new version - Any period)? We cover your back.
-version: 1.5.1
+version: 1.5.2
 homepage: https://github.com/MostafaSolimanMO/once
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: ">=2.16.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  shared_preferences: ^2.0.16
-  package_info_plus: ^3.0.2
+  shared_preferences: ^2.2.0
+  package_info_plus: ^4.0.2
   
 dev_dependencies:
   flutter_lints: ^1.0.0

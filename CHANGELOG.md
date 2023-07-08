@@ -1,5 +1,10 @@
 # 1.5.1
 
+- fix: add `uniqueKey` to `runOnNewVersion` to fix runOnEveryNewVersion runs only once even if used in multiple pages
+- chore: update dependencies
+
+# 1.5.1
+
 - fix: `OnceBuilder.fallback()` is always called at least one time when specified
 - chore: update dependencies
 
