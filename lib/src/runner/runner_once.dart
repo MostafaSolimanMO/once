@@ -191,14 +191,14 @@ abstract class Once {
   static Future<T?> runOnEveryNewVersion<T>({
     /// Key used to runOnEveryNewVersion in multiple places
     /// without key it will run only once
-    String uniqueKey = 'once_version',
+    String? key,
     required T? Function() callback,
     T? Function()? fallback,
     bool debugCallback = false,
     bool debugFallback = false,
   }) {
     return OnceRunner.runOnNewVersion(
-      uniqueKey: uniqueKey,
+      key: key,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,

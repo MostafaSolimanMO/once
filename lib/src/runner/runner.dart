@@ -136,7 +136,7 @@ abstract class OnceRunner {
   static Future<T?> runOnNewVersion<T>({
     /// Key used to runOnEveryNewVersion in multiple places
     /// without key it will run only once
-    String uniqueKey = 'runOnNewVersion',
+    String? key,
     required T? Function() callback,
     T? Function()? fallback,
     bool debugCallback = false,
@@ -154,22 +154,22 @@ abstract class OnceRunner {
       return fallback?.call();
     }
 
-    final key = 'ON_NEW_VERSION$uniqueKey';
+    final onceKey = 'ON_NEW_VERSION_${key ?? 'once_key'}';
     final preferences = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentVersion = packageInfo.version;
 
-    if (preferences.containsKey(key)) {
-      final savedVersion = preferences.getString(key)!.replaceAll(".", "");
+    if (preferences.containsKey(onceKey)) {
+      final savedVersion = preferences.getString(onceKey)!.replaceAll(".", "");
       String existingVersion = currentVersion.replaceAll(".", "");
 
       if (num.parse(existingVersion) > num.parse(savedVersion)) {
-        preferences.setString(key, currentVersion);
+        preferences.setString(onceKey, currentVersion);
         return callback.call();
       }
       return fallback?.call();
     }
-    preferences.setString(key, currentVersion);
+    preferences.setString(onceKey, currentVersion);
     return callback.call();
   }
 

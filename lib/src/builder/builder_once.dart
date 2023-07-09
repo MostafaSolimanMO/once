@@ -7,6 +7,9 @@ import 'package:once/src/runner/runner.dart';
 abstract class OnceWidget {
   /// A generic callback that runs on an every new version
   static FutureBuilder<Widget?> showOnEveryNewVersion<T>({
+    /// Key used to runOnEveryNewVersion in multiple places
+    /// without key it will run only once
+    String? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
     bool debugCallback = false,
@@ -14,6 +17,7 @@ abstract class OnceWidget {
   }) {
     return OnceBuilder.build(
       Once.runOnEveryNewVersion(
+        key: key,
         callback: builder,
         debugCallback: debugCallback,
         debugFallback: debugFallback,

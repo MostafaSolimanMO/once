@@ -59,6 +59,7 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 OnceWidget.showOnEveryNewVersion(
+                  key: 'newVersionInfoDialog',
                   builder: () {
                     return const Text('Hey, It new app version, Smile!');
                   },
