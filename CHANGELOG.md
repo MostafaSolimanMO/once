@@ -1,4 +1,4 @@
-# 1.5.1
+# 1.5.2
 
 - fix: add `uniqueKey` to `runOnNewVersion` to fix runOnEveryNewVersion runs only once even if used in multiple pages
 - chore: update dependencies
