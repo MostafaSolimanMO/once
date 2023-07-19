@@ -168,7 +168,7 @@ abstract class OnceRunner {
       return fallback?.call();
     }
     preferences.setString(key, currentVersion);
-    return callback.call();
+    return fallback?.call();
   }
 
   /// Clear cache for a specific [key]
