@@ -170,7 +170,7 @@ abstract class OnceRunner {
       return fallback?.call();
     }
     preferences.setString(onceKey, currentVersion);
-    return callback.call();
+    return null;
   }
 
   /// Clear cache for a specific [key]
