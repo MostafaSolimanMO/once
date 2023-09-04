@@ -34,13 +34,9 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
-  void set(String newOnce) {
-    setState(
-      () {
-        currentValue = newOnce + ' ${Random().nextInt(100)}';
-      },
-    );
-  }
+  void set(String newOnce) => setState(
+        () => currentValue = newOnce + ' ${Random().nextInt(100)}',
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -60,102 +56,78 @@ class _MyAppState extends State<MyApp> {
               children: [
                 OnceWidget.showOnEveryNewVersion(
                   key: 'newVersionInfoDialog',
-                  builder: () {
-                    return const Text('Hey, It new app version, Smile!');
-                  },
-                  fallback: () {
-                    return const Text('Welcome back');
-                  },
+                  builder: () => const Text('Hey, It new app version, Smile!'),
+                  fallback: () => const Text('Welcome back'),
                 ),
                 OnceWidget.showOnce(
                   'onceWidget',
-                  builder: () {
-                    return const Text('Hey, I am the once widget');
-                  },
-                  fallback: () {
-                    return const Text('I am not the one widget');
-                  },
+                  builder: () => const Text('Hey, I am the once widget'),
+                  fallback: () => const Text('I am not the one'),
                 ),
                 OnceWidget.showEvery12Hours(
                   'widgetEvery12Hours',
-                  builder: () {
-                    return const Text('Hey, I am the every12Hours widget');
-                  },
+                  builder: () => const Text('Hey, I am the every12Hours'),
                 ),
                 ElevatedButton(
                   child: const Text("Run On New Version"),
-                  onPressed: () {
-                    Once.runOnEveryNewVersion(
-                      callback: () => set("Hello New Version"),
-                      fallback: () => set('Okay its not new version'),
-                    );
-                  },
+                  onPressed: () => Once.runOnEveryNewVersion(
+                    callback: () => set("Hello New Version"),
+                    fallback: () => set('Okay its not new version'),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Hourly"),
-                  onPressed: () {
-                    Once.runHourly(
-                      "Hourly",
-                      callback: () => set("Hello Hourly"),
-                    );
-                  },
+                  onPressed: () => Once.runHourly(
+                    "Hourly",
+                    callback: () => set("Hello Hourly"),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Every 12 Hour"),
-                  onPressed: () {
-                    Once.runEvery12Hours(
-                      "12 Hour",
-                      callback: () => set("Hello 12 Hour"),
-                    );
-                  },
+                  onPressed: () => Once.runEvery12Hours(
+                    "12 Hour",
+                    callback: () => set("Hello 12 Hour"),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Daily"),
-                  onPressed: () {
-                    Once.runDaily(
-                      "Daily",
-                      callback: () => set("Hello Daily"),
-                    );
-                  },
+                  onPressed: () => Once.runDaily(
+                    "Daily",
+                    callback: () => set("Hello Daily"),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run On New Month"),
-                  onPressed: () {
-                    Once.runOnNewMonth(
-                      "New Month",
-                      callback: () => set("Hello New Month"),
-                      fallback: () => set("Hello New Month Fallback"),
-                    );
-                  },
+                  onPressed: () => Once.runOnNewMonth(
+                    "New Month",
+                    callback: () => set("Hello New Month"),
+                    fallback: () => set("Hello New Month Fallback"),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Monthly"),
-                  onPressed: () {
-                    Once.runMonthly("Monthly x",
-                        callback: () => set("Hello Monthly"),
-                        fallback: () => set('Hello Monthly Fallback'));
-                  },
+                  onPressed: () => Once.runMonthly(
+                    "Monthly x",
+                    callback: () => set("Hello Monthly"),
+                    fallback: () => set('Hello Monthly Fallback'),
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Monthly Debug"),
-                  onPressed: () {
-                    Once.runMonthly(
-                      "Monthly debug",
-                      callback: () => set("Hello Monthly"),
-                      fallback: () => set('Hello Monthly Fallback'),
-                      debugCallback: true,
-                    );
-                  },
+                  onPressed: () => Once.runMonthly(
+                    "Monthly debug",
+                    callback: () => set("Hello Monthly"),
+                    fallback: () => set('Hello Monthly Fallback'),
+                    debugCallback: true,
+                  ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Evert 5 Sec"),
-                  onPressed: () {
-                    Once.runCustom(
-                      "x",
-                      duration: const Duration(seconds: 5),
-                      callback: () => set("Hello Custom"),
-                    );
-                  },
+                  onPressed: () => Once.runCustom(
+                    "x",
+                    duration: const Duration(seconds: 5),
+                    callback: () => set("Hello Custom"),
+                  ),
                 ),
                 const SizedBox(
                   height: 22,
