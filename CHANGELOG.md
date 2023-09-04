@@ -1,10 +1,16 @@
+# 1.5.4
+
+- fix: [Issue #20](https://github.com/MostafaSolimanMO/once/issues/20)
+- chore: update dependencies
+
 # 1.5.3
 
 - fix `runOnNewVersion` callback even on first run
 
 # 1.5.2
 
-- fix: add `uniqueKey` to `runOnNewVersion` to fix runOnEveryNewVersion runs only once even if used in multiple pages
+- fix: add `uniqueKey` to `runOnNewVersion` to fix runOnEveryNewVersion runs only once even if used
+  in multiple pages
 - chore: update dependencies
 
 # 1.5.1
@@ -19,27 +25,27 @@
 
 # 1.4.1
 
-- fix: clear key was missing the prefix 
+- fix: clear key was missing the prefix
 
 # 1.4.0
 
 - Add Functions
-  * `clear` removes the `Once` or `OnceWidget` data for a specific `key`.
-  * `clearAll` removes all the `Once` and `OnceWidget` data.
-   
+    * `clear` removes the `Once` or `OnceWidget` data for a specific `key`.
+    * `clearAll` removes all the `Once` and `OnceWidget` data.
+
 - Add debug parameters that only works in debug mode
-  * `debugCallback` used to debug the `callback` function.
-  * `debugFallback` used to debug the `fallback` function.
+    * `debugCallback` used to debug the `callback` function.
+    * `debugFallback` used to debug the `fallback` function.
 
 - Add prefix to the `key` to make it unique **No changes required**.
 
 # 1.3.0
 
 - Add `BuildContext` to the `builder` and `fallback` of `WidgetOnce`
- 
+
 # 1.2.1
 
-- ReadMe.md Update 
+- ReadMe.md Update
 
 # 1.2.0
 
@@ -51,6 +57,7 @@
 # 1.1.2
 
 - Analyzing
+
 # 1.1.0
 
 - Fix bugs
