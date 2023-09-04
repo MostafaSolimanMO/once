@@ -160,8 +160,8 @@ abstract class OnceRunner {
     String currentVersion = packageInfo.version;
 
     if (preferences.containsKey(onceKey)) {
-      final savedVersion = preferences.getString(onceKey)!.replaceAll(".", "");
-      String existingVersion = currentVersion.replaceAll(".", "");
+      final savedVersion = preferences.getString(onceKey) ?? '';
+      String existingVersion = currentVersion.replaceAll(RegExp(r'[^\d]+'), '');
 
       if (num.parse(existingVersion) > num.parse(savedVersion)) {
         preferences.setString(onceKey, currentVersion);
