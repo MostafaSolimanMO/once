@@ -34,7 +34,7 @@ abstract class OnceRunner {
     }
 
     /// Add ONCE_PREFIX to the key if it doesn't exist and
-    /// if the key itself it exists, add the sane value
+    /// if the key itself it exists, add the same value
     /// to the key with the prefix
     if (preferences.containsKey(key)) {
       if (!key.contains(_keyPrefix)) {
