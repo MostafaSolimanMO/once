@@ -64,7 +64,7 @@ abstract class OnceWidget {
     );
   }
 
-  /// A generic callback that runs every hours
+  /// A generic callback that runs after every hour
   static FutureBuilder<Widget?> showHourly<T>(
     String key, {
     required Widget? Function() builder,
