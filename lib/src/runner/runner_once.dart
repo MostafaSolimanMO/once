@@ -206,6 +206,25 @@ abstract class Once {
     );
   }
 
+  /// A generic callback that runs each time the app build number changes
+  static Future<T?> runOnEveryNewBuild<T>({
+    /// Key used to runOnEveryNewBuild in multiple places
+    /// without key it will run only once
+    String? key,
+    required T? Function() callback,
+    T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) {
+    return OnceRunner.runOnNewBuild(
+      key: key,
+      callback: callback,
+      fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
+    );
+  }
+
   /// Clear OnceBuilder cache for a specific [key]
   static void clear({
     required String key,

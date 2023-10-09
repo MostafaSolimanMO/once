@@ -56,7 +56,12 @@ class _MyAppState extends State<MyApp> {
               children: [
                 OnceWidget.showOnEveryNewVersion(
                   key: 'newVersionInfoDialog',
-                  builder: () => const Text('Hey, It new app version, Smile!'),
+                  builder: () => const Text('Hey, It\'s a new app version, Smile!'),
+                  fallback: () => const Text('Welcome back'),
+                ),
+                OnceWidget.showOnEveryNewBuild(
+                  key: 'newBuildInfoDialog',
+                  builder: () => const Text('Hey, It\'s a new app build, Smile!'),
                   fallback: () => const Text('Welcome back'),
                 ),
                 OnceWidget.showOnce(

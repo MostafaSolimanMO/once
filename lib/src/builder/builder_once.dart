@@ -26,6 +26,27 @@ abstract class OnceWidget {
     );
   }
 
+  /// A generic callback that runs on an every new build number
+  static FutureBuilder<Widget?> showOnEveryNewBuild<T>({
+    /// Key used to runOnEveryNewBuild in multiple places
+    /// without key it will run only once
+    String? key,
+    required Widget? Function() builder,
+    Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) {
+    return OnceBuilder.build(
+      Once.runOnEveryNewBuild(
+        key: key,
+        callback: builder,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
+      fallback,
+    );
+  }
+
   /// A generic callback that runs every once
   static FutureBuilder<Widget?> showOnce<T>(
     String key, {
