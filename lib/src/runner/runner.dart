@@ -173,6 +173,47 @@ abstract class OnceRunner {
     return null;
   }
 
+  /// Runs only on every app build number change
+  static Future<T?> runOnNewBuild<T>({
+    /// Key used to runOnEveryNewBuild in multiple places
+    /// without key it will run only once
+    String? key,
+    required T? Function() callback,
+    T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) async {
+    /// if the debug mode is enabled, we will not check
+    /// the cache and run the callback function
+    if (debugCallback && kDebugMode) {
+      return callback.call();
+    }
+
+    /// if the debug mode is enabled, we will not check
+    /// the cache and run the fallback function
+    if (debugFallback && kDebugMode) {
+      return fallback?.call();
+    }
+
+    final buildKey = 'ON_NEW_BUILD_${key ?? 'build_key'}';
+    final preferences = await SharedPreferences.getInstance();
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String currentBuild = packageInfo.buildNumber;
+
+    if (preferences.containsKey(buildKey)) {
+      final savedBuild = preferences.getString(buildKey) ?? '';
+      String existingBuild = currentBuild.replaceAll(RegExp(r'[^\d]+'), '');
+
+      if (num.parse(existingBuild) > num.parse(savedBuild)) {
+        preferences.setString(buildKey, currentBuild);
+        return callback.call();
+      }
+      return fallback?.call();
+    }
+    preferences.setString(buildKey, currentBuild);
+    return null;
+  }
+
   /// Clear cache for a specific [key]
   static void clear({
     required String key,
