@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void set(String newOnce) => setState(
-        () => currentValue = newOnce + ' ${Random().nextInt(100)}',
+        () => currentValue = '$newOnce ${Random().nextInt(100)}',
       );
 
   @override
@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Once Made with ❤️'),
+          title: const Text('Free Palestine 🇵🇸'),
         ),
         body: Center(
           child: SingleChildScrollView(
@@ -56,13 +56,15 @@ class _MyAppState extends State<MyApp> {
               children: [
                 OnceWidget.showOnEveryNewVersion(
                   key: 'newVersionInfoDialog',
-                  builder: () => const Text('Hey, It\'s a new app version, Smile!'),
-                  fallback: () => const Text('Welcome back'),
+                  builder: () => const Text(
+                    'Hey, It\'s a new app version, Smile!',
+                  ),
                 ),
                 OnceWidget.showOnEveryNewBuild(
                   key: 'newBuildInfoDialog',
-                  builder: () => const Text('Hey, It\'s a new app build, Smile!'),
-                  fallback: () => const Text('Welcome back'),
+                  builder: () => const Text(
+                    'Hey, It\'s a new app build, Smile!',
+                  ),
                 ),
                 OnceWidget.showOnce(
                   'onceWidget',
@@ -84,21 +86,21 @@ class _MyAppState extends State<MyApp> {
                   child: const Text("Run Hourly"),
                   onPressed: () => Once.runHourly(
                     "Hourly",
-                    callback: () => set("Hello Hourly"),
+                    callback: () => set("Hello New Hour"),
                   ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Every 12 Hour"),
                   onPressed: () => Once.runEvery12Hours(
                     "12 Hour",
-                    callback: () => set("Hello 12 Hour"),
+                    callback: () => set("Hello New 12 Hour"),
                   ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Daily"),
                   onPressed: () => Once.runDaily(
                     "Daily",
-                    callback: () => set("Hello Daily"),
+                    callback: () => set("Hello New Daily"),
                   ),
                 ),
                 ElevatedButton(
@@ -106,7 +108,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () => Once.runOnNewMonth(
                     "New Month",
                     callback: () => set("Hello New Month"),
-                    fallback: () => set("Hello New Month Fallback"),
+                    fallback: () => set("Hello I am not new Month"),
                   ),
                 ),
                 ElevatedButton(
@@ -114,15 +116,15 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () => Once.runMonthly(
                     "Monthly x",
                     callback: () => set("Hello Monthly"),
-                    fallback: () => set('Hello Monthly Fallback'),
+                    fallback: () => set('Hello I am not Monthly'),
                   ),
                 ),
                 ElevatedButton(
                   child: const Text("Run Monthly Debug"),
                   onPressed: () => Once.runMonthly(
                     "Monthly debug",
-                    callback: () => set("Hello Monthly"),
-                    fallback: () => set('Hello Monthly Fallback'),
+                    callback: () => set("Hello Monthly (Debug)"),
+                    fallback: () => set('Hello I am not Monthly (Debug)'),
                     debugCallback: true,
                   ),
                 ),
@@ -131,7 +133,7 @@ class _MyAppState extends State<MyApp> {
                   onPressed: () => Once.runCustom(
                     "x",
                     duration: const Duration(seconds: 5),
-                    callback: () => set("Hello Custom"),
+                    callback: () => set("Hello New 5 Sec"),
                   ),
                 ),
                 const SizedBox(
