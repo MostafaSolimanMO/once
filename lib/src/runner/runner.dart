@@ -43,10 +43,10 @@ abstract class OnceRunner {
           key = '$_keyPrefix$key';
           preferences.setString(key, 'once');
         } else {
-          int? currentValue = preferences.getInt(key);
+          final currentValue = preferences.get(key);
           preferences.remove(key);
           key = '$_keyPrefix$key';
-          preferences.setInt(key, currentValue!);
+          preferences.setString(key, currentValue.toString());
         }
       }
     } else {
@@ -66,21 +66,21 @@ abstract class OnceRunner {
       final monthMilliseconds =
           (Utils.daysInMonth(currentMonth, currentYear) * Const.day);
       if (preferences.containsKey(key)) {
-        final savedTime = preferences.getInt(key)!;
+        final savedTime = int.parse(preferences.get(key).toString());
 
         if (savedTime <= currentTime) {
-          preferences.setInt(
+          preferences.setString(
             key,
-            savedTime + monthMilliseconds,
+            (savedTime + monthMilliseconds).toString(),
           );
           return callback.call();
         }
         return fallback?.call();
       }
 
-      preferences.setInt(
+      preferences.setString(
         key,
-        currentTime + monthMilliseconds,
+        (currentTime + monthMilliseconds).toString(),
       );
       return callback.call();
     }
@@ -88,47 +88,47 @@ abstract class OnceRunner {
     /// Run only on every start of day
     if (duration == -3) {
       if (preferences.containsKey(key)) {
-        final savedWeekday = preferences.getInt(key)!;
+        final savedWeekday = int.parse(preferences.get(key).toString());
 
         if (savedWeekday != currentWeekday) {
-          preferences.setInt(key, currentWeekday);
+          preferences.setString(key, currentWeekday.toString());
           return callback.call();
         }
         return fallback?.call();
       }
-      preferences.setInt(key, currentWeekday);
+      preferences.setString(key, currentWeekday.toString());
       return callback.call();
     }
 
     /// Run only on every start of Month
     if (duration > 0 && duration < 12) {
       if (preferences.containsKey(key)) {
-        final savedMonth = preferences.getInt(key)!;
+        final savedMonth = int.parse(preferences.get(key).toString());
 
         if (savedMonth != duration) {
-          preferences.setInt(key, duration);
+          preferences.setString(key, duration.toString());
           return callback.call();
         }
         return fallback?.call();
       }
-      preferences.setInt(key, duration);
+      preferences.setString(key, duration.toString());
       return callback.call();
     }
 
     /// Run any other once options
     if (duration != -2 && preferences.containsKey(key)) {
-      final int savedTime = preferences.getInt(key)!;
+      final int savedTime = int.parse(preferences.get(key).toString());
       final difference = currentTime - savedTime;
 
       if (difference > duration) {
-        preferences.setInt(key, currentTime);
+        preferences.setString(key, currentTime.toString());
         return callback.call();
       }
 
       return fallback?.call();
     }
 
-    preferences.setInt(key, currentTime);
+    preferences.setString(key, currentTime.toString());
     return callback.call();
   }
 
@@ -160,7 +160,9 @@ abstract class OnceRunner {
     String currentVersion = packageInfo.version;
 
     if (preferences.containsKey(onceKey)) {
-      final savedVersion = preferences.getString(onceKey) ?? '';
+      String savedVersion = preferences.get(onceKey).toString();
+      savedVersion = savedVersion.replaceAll(RegExp(r'[^\d]+'), '');
+
       String existingVersion = currentVersion.replaceAll(RegExp(r'[^\d]+'), '');
 
       if (num.parse(existingVersion) > num.parse(savedVersion)) {
@@ -201,7 +203,7 @@ abstract class OnceRunner {
     String currentBuild = packageInfo.buildNumber;
 
     if (preferences.containsKey(buildKey)) {
-      final savedBuild = preferences.getString(buildKey) ?? '';
+      final savedBuild = preferences.get(buildKey).toString();
       String existingBuild = currentBuild.replaceAll(RegExp(r'[^\d]+'), '');
 
       if (num.parse(existingBuild) > num.parse(savedBuild)) {
