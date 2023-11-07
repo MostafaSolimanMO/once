@@ -1,3 +1,10 @@
+# 1.6.0
+
+- Feat: Added [runOnEveryNewBuild](https://github.com/MostafaSolimanMO/once/pull/23) Function 
+- Fix: `runOnNewVersion` saves version numbers with non-numerical values and does not sanitize them upon retrieval [Issue #24](https://github.com/MostafaSolimanMO/once/issues/24)
+- Fix: Types Error in `runner.dart`
+- Chore: Update dependencies & example app
+
 # 1.5.4
 
 - fix: [Issue #20](https://github.com/MostafaSolimanMO/once/issues/20)
