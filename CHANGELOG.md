@@ -1,3 +1,7 @@
+# 1.6.1
+
+- Chore: Update dependencies `package_info_plus` to `^5.0.1`
+
 # 1.6.0
 
 - Feat: Added [runOnEveryNewBuild](https://github.com/MostafaSolimanMO/once/pull/23) Function 
