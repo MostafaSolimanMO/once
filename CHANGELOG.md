@@ -1,3 +1,8 @@
+# 1.6.2
+
+- Chore: Updates dependencies `package_info_plus` to `^6.0.0`
+- Chore: Updates minimum Dart SDK to `>=3.3.0`
+
 # 1.6.1
 
 - Chore: Update dependencies `package_info_plus` to `^5.0.1`
