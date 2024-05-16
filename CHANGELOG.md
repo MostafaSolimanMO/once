@@ -1,3 +1,7 @@
+# 1.6.3
+
+- Chore: Updates dependencies `shared_preferences` to `^2.2.3` and `package_info_plus` to `^8.0.0`
+
 # 1.6.2
 
 - Chore: Updates dependencies `package_info_plus` to `^6.0.0`
@@ -9,8 +13,9 @@
 
 # 1.6.0
 
-- Feat: Added [runOnEveryNewBuild](https://github.com/MostafaSolimanMO/once/pull/23) Function 
-- Fix: `runOnNewVersion` saves version numbers with non-numerical values and does not sanitize them upon retrieval [Issue #24](https://github.com/MostafaSolimanMO/once/issues/24)
+- Feat: Added [runOnEveryNewBuild](https://github.com/MostafaSolimanMO/once/pull/23) Function
+- Fix: `runOnNewVersion` saves version numbers with non-numerical values and does not sanitize them
+  upon retrieval [Issue #24](https://github.com/MostafaSolimanMO/once/issues/24)
 - Fix: Types Error in `runner.dart`
 - Chore: Update dependencies & example app
 

@@ -3,7 +3,7 @@
 abstract class Utils {
   /// Return month days with accuracy in it, taking the current month and year
   /// considering the leap year
-  static int daysInMonth(final int monthNum, final int _year) {
+  static int daysInMonth(final int monthNum, final int year) {
     List<int> monthLength = List.filled(12, 0);
     monthLength[0] = 31;
     monthLength[2] = 31;
@@ -17,7 +17,7 @@ abstract class Utils {
     monthLength[10] = 30;
     monthLength[11] = 31;
 
-    if (_leapYear(_year) == true) {
+    if (_leapYear(year) == true) {
       monthLength[1] = 29;
     } else {
       monthLength[1] = 28;
@@ -26,12 +26,12 @@ abstract class Utils {
     return monthLength[monthNum - 1];
   }
 
-  static bool _leapYear(int _year) {
+  static bool _leapYear(int year) {
     bool leapYear = false;
-    bool leap = ((_year % 100 == 0) && (_year % 400 != 0));
+    bool leap = ((year % 100 == 0) && (year % 400 != 0));
     if (leap == true) {
       leapYear = false;
-    } else if (_year % 4 == 0) {
+    } else if (year % 4 == 0) {
       leapYear = true;
     }
 
