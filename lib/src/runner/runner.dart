@@ -138,6 +138,7 @@ abstract class OnceRunner {
     T? Function()? fallback,
     bool debugCallback = false,
     bool debugFallback = false,
+    String uniqueKey = '',
   }) async {
     /// if the debug mode is enabled, we will not check
     /// the cache and run the callback function
@@ -151,7 +152,7 @@ abstract class OnceRunner {
       return fallback?.call();
     }
 
-    const key = 'ON_NEW_VERSION';
+    final key = 'ON_NEW_VERSION' + uniqueKey;
     final preferences = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentVersion = packageInfo.version;
@@ -167,7 +168,7 @@ abstract class OnceRunner {
       return fallback?.call();
     }
     preferences.setString(key, currentVersion);
-    return callback.call();
+    return fallback?.call();
   }
 
   /// Clear cache for a specific [key]

@@ -193,12 +193,17 @@ abstract class Once {
     T? Function()? fallback,
     bool debugCallback = false,
     bool debugFallback = false,
+
+    /// use key if you use runOnEveryNewVersion in multiple places
+    /// without key it will run only once
+    String key = '',
   }) {
     return OnceRunner.runOnNewVersion(
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,
       debugFallback: debugFallback,
+      uniqueKey: key,
     );
   }
 
