@@ -19,3 +19,7 @@ topics:
   - utils
   - storage
   - persistence
+
+platforms:
+  android:
+  ios:
