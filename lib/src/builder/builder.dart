@@ -19,7 +19,11 @@ class OnceWidget extends StatefulWidget {
   final Future<Widget?>? future;
   final Widget? Function()? fallback;
 
-  const OnceWidget({Key? key, this.future, this.fallback}) : super(key: key);
+  const OnceWidget({
+    super.key,
+    this.future,
+    this.fallback,
+  });
 
   @override
   State<OnceWidget> createState() => _OnceWidgetState();

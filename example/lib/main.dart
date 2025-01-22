@@ -68,6 +68,7 @@ class _AppState extends State<App> {
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 12,
             children: [
               OnceWidget.showOnEveryNewVersion(
                 'newVersionInfoDialog',
