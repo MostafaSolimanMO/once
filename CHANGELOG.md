@@ -1,3 +1,8 @@
+# 1.7.0
+- Core: Convert OnceBuilder build from FutureBuilder to StatefulWidget [Issue #29](https://github.com/MostafaSolimanMO/once/issues/26)
+- Chore: Update dependencies `package_info_plus` to `^8.1.3`
+- Require Dart 3.3.0 or higher
+
 # 1.6.3
 
 - Chore: Updates dependencies `shared_preferences` to `^2.2.3` and `package_info_plus` to `^8.0.0`
