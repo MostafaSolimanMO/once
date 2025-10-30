@@ -1,6 +1,6 @@
-/// Once const Durations in milliseconds thats
+/// Once const Durations in milliseconds
 abstract class Const {
-  static const year = day * 365;
-  static const week = day * 7;
-  static const day = 86400000;
+  static const yearInMilliseconds = dayInMilliseconds * 365;
+  static const weekInMilliseconds = dayInMilliseconds * 7;
+  static const dayInMilliseconds = 86400000;
 }

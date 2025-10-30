@@ -173,7 +173,7 @@ abstract class OnceWidget {
       key,
       OnceRunner.run(
         key: onceKey,
-        duration: Const.week,
+        duration: Const.weekInMilliseconds,
         callback: builder,
         debugCallback: debugCallback,
         debugFallback: debugFallback,
@@ -239,7 +239,7 @@ abstract class OnceWidget {
       key,
       OnceRunner.run(
         key: onceKey,
-        duration: Const.year,
+        duration: Const.yearInMilliseconds,
         callback: builder,
         debugCallback: debugCallback,
         debugFallback: debugFallback,

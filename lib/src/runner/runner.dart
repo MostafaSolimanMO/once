@@ -64,7 +64,7 @@ abstract class OnceRunner {
     /// Run only Monthly
     if (duration == -1) {
       final monthMilliseconds =
-          (Utils.daysInMonth(currentMonth, currentYear) * Const.day);
+          (Utils.daysInMonth(currentMonth, currentYear) * Const.dayInMilliseconds);
       if (preferences.containsKey(key)) {
         final savedTime = int.parse(preferences.get(key).toString());
 
@@ -154,24 +154,24 @@ abstract class OnceRunner {
       return fallback?.call();
     }
 
-    final onceKey = 'ON_NEW_VERSION_${key ?? 'once_key'}';
+    final versionKey = 'ON_NEW_VERSION_${key ?? 'once_key'}';
     final preferences = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentVersion = packageInfo.version;
 
-    if (preferences.containsKey(onceKey)) {
-      String savedVersion = preferences.get(onceKey).toString();
+    if (preferences.containsKey(versionKey)) {
+      String savedVersion = preferences.get(versionKey).toString();
       savedVersion = savedVersion.replaceAll(RegExp(r'[^\d]+'), '');
 
-      String existingVersion = currentVersion.replaceAll(RegExp(r'[^\d]+'), '');
+      String parsedCurrentVersion = currentVersion.replaceAll(RegExp(r'[^\d]+'), '');
 
-      if (num.parse(existingVersion) > num.parse(savedVersion)) {
-        preferences.setString(onceKey, currentVersion);
+      if (num.parse(parsedCurrentVersion) > num.parse(savedVersion)) {
+        preferences.setString(versionKey, currentVersion);
         return callback.call();
       }
       return fallback?.call();
     }
-    preferences.setString(onceKey, currentVersion);
+    preferences.setString(versionKey, currentVersion);
     return null;
   }
 
@@ -197,22 +197,22 @@ abstract class OnceRunner {
       return fallback?.call();
     }
 
-    final buildKey = 'ON_NEW_BUILD_${key ?? 'build_key'}';
+    final buildNumberKey = 'ON_NEW_BUILD_${key ?? 'build_key'}';
     final preferences = await SharedPreferences.getInstance();
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     String currentBuild = packageInfo.buildNumber;
 
-    if (preferences.containsKey(buildKey)) {
-      final savedBuild = preferences.get(buildKey).toString();
-      String existingBuild = currentBuild.replaceAll(RegExp(r'[^\d]+'), '');
+    if (preferences.containsKey(buildNumberKey)) {
+      final savedBuild = preferences.get(buildNumberKey).toString();
+      String parsedCurrentBuild = currentBuild.replaceAll(RegExp(r'[^\d]+'), '');
 
-      if (num.parse(existingBuild) > num.parse(savedBuild)) {
-        preferences.setString(buildKey, currentBuild);
+      if (num.parse(parsedCurrentBuild) > num.parse(savedBuild)) {
+        preferences.setString(buildNumberKey, currentBuild);
         return callback.call();
       }
       return fallback?.call();
     }
-    preferences.setString(buildKey, currentBuild);
+    preferences.setString(buildNumberKey, currentBuild);
     return null;
   }
 

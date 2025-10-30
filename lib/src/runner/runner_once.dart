@@ -29,7 +29,7 @@ abstract class Once {
   }) {
     return OnceRunner.run(
       key: key,
-      duration: Const.day ~/ 2,
+      duration: Const.dayInMilliseconds ~/ 2,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,
@@ -47,7 +47,7 @@ abstract class Once {
   }) {
     return OnceRunner.run(
       key: key,
-      duration: Const.day ~/ 24,
+      duration: Const.dayInMilliseconds ~/ 24,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,
@@ -67,7 +67,7 @@ abstract class Once {
   }) {
     return OnceRunner.run(
       key: key,
-      duration: Const.day,
+      duration: Const.dayInMilliseconds,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,
@@ -105,7 +105,7 @@ abstract class Once {
   }) {
     return OnceRunner.run(
       key: key,
-      duration: Const.week,
+      duration: Const.weekInMilliseconds,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,
@@ -159,7 +159,7 @@ abstract class Once {
   }) {
     return OnceRunner.run(
       key: key,
-      duration: Const.year,
+      duration: Const.yearInMilliseconds,
       callback: callback,
       fallback: fallback,
       debugCallback: debugCallback,
