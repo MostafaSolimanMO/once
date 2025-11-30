@@ -1,3 +1,6 @@
+# 1.7.1
+- Chore: Update dependencies `package_info_plus` to `^9.0.0`
+
 # 1.7.0
 - Core: Convert OnceBuilder build from FutureBuilder to StatefulWidget [Issue #29](https://github.com/MostafaSolimanMO/once/issues/26)
 - Chore: Update dependencies `package_info_plus` to `^8.1.3`
