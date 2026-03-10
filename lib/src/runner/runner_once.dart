@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:once/src/const.dart';
 import 'package:once/src/runner/runner.dart';
 
@@ -223,6 +224,26 @@ abstract class Once {
       debugCallback: debugCallback,
       debugFallback: debugFallback,
     );
+  }
+
+  static Future<T?> runUntilDone<T>(
+    String key, {
+    required T? Function(VoidCallback dismiss) callback,
+    T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) {
+    return OnceRunner.runUntilDone(
+      key: key,
+      callback: callback,
+      fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
+    );
+  }
+
+  static Future<void> markDone({required String key}) {
+    return OnceRunner.markDone(key: key);
   }
 
   /// Clear OnceBuilder cache for a specific [key]

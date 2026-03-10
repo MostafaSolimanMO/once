@@ -272,6 +272,31 @@ abstract class OnceWidget {
     );
   }
 
+  static Widget showUntilDone(
+    String onceKey, {
+    Key? key,
+    required Widget? Function(VoidCallback dismiss) builder,
+    Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) {
+    return OnceBuilder.build(
+      key,
+      OnceRunner.runUntilDone(
+        key: onceKey,
+        callback: builder,
+        fallback: fallback,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
+      fallback,
+    );
+  }
+
+  static Future<void> markDone({required String key}) {
+    return OnceRunner.markDone(key: key);
+  }
+
   /// Clear OnceBuilder cache for a specific [key]
   static void clear({
     required String key,

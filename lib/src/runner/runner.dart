@@ -216,6 +216,34 @@ abstract class OnceRunner {
     return null;
   }
 
+  static Future<T?> runUntilDone<T>({
+    required String key,
+    required T? Function(VoidCallback dismiss) callback,
+    T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) async {
+    final preferences = await SharedPreferences.getInstance();
+
+    if (debugCallback && kDebugMode) return callback.call(() {});
+    if (debugFallback && kDebugMode) return fallback?.call();
+
+    if (!key.contains(_keyPrefix)) key = '$_keyPrefix$key';
+
+    if (preferences.getString(key) == 'done') return fallback?.call();
+
+    return callback.call(() async {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString(key, 'done');
+    });
+  }
+
+  static Future<void> markDone({required String key}) async {
+    final preferences = await SharedPreferences.getInstance();
+    final resolvedKey = key.contains(_keyPrefix) ? key : '$_keyPrefix$key';
+    await preferences.setString(resolvedKey, 'done');
+  }
+
   /// Clear cache for a specific [key]
   static void clear({
     required String key,
