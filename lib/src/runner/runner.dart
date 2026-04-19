@@ -232,9 +232,8 @@ abstract class OnceRunner {
 
     if (preferences.getString(key) == 'done') return fallback?.call();
 
-    return callback.call(() async {
-      final prefs = await SharedPreferences.getInstance();
-      prefs.setString(key, 'done');
+    return callback.call(() {
+      preferences.setString(key, 'done');
     });
   }
 
