@@ -226,6 +226,10 @@ abstract class Once {
     );
   }
 
+  /// A generic callback that keeps running until the user dismisses it.
+  /// The [callback] receives a `dismiss` function; calling it persists a
+  /// 'done' marker so that subsequent invocations with the same [key]
+  /// return [fallback] instead of [callback].
   static Future<T?> runUntilDone<T>(
     String key, {
     required T? Function(VoidCallback dismiss) callback,
@@ -242,6 +246,8 @@ abstract class Once {
     );
   }
 
+  /// Marks the [key] used by [runUntilDone] as done, so that subsequent
+  /// invocations return their `fallback` instead of running the callback.
   static Future<void> markDone({required String key}) {
     return OnceRunner.markDone(key: key);
   }

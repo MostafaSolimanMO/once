@@ -272,6 +272,10 @@ abstract class OnceWidget {
     );
   }
 
+  /// A generic builder that keeps rendering until the user dismisses it.
+  /// The [builder] receives a `dismiss` callback; calling it persists a
+  /// 'done' marker so that subsequent builds with the same [onceKey]
+  /// render [fallback] instead of [builder].
   static Widget showUntilDone(
     String onceKey, {
     Key? key,
@@ -293,6 +297,8 @@ abstract class OnceWidget {
     );
   }
 
+  /// Marks the [key] used by [showUntilDone] as done, so that subsequent
+  /// builds render their `fallback` instead of the original builder.
   static Future<void> markDone({required String key}) {
     return OnceRunner.markDone(key: key);
   }
