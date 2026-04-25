@@ -9,7 +9,7 @@ abstract class OnceWidget {
   static Widget showOnEveryNewVersion<T>(
     /// Key used to runOnEveryNewVersion in multiple places
     /// without key it will run only once
-    onceKey, {
+    String? onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -32,7 +32,7 @@ abstract class OnceWidget {
   static Widget showOnEveryNewBuild<T>(
     /// Key used to runOnEveryNewBuild in multiple places
     /// without key it will run only once
-    onceKey, {
+    String? onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -74,7 +74,7 @@ abstract class OnceWidget {
 
   /// A generic callback that runs every 12 hours
   static Widget showEvery12Hours<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -95,7 +95,7 @@ abstract class OnceWidget {
 
   /// A generic callback that runs after every hour
   static Widget showHourly<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -118,7 +118,7 @@ abstract class OnceWidget {
   /// The day here means you run the function at 3:00 AM. So, Day means
   /// the next 3:00 AM
   static Widget showDaily<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -141,7 +141,7 @@ abstract class OnceWidget {
   /// The day here means you run the function at 3:00 AM. So, Day means
   /// the next 12:00 AM
   static Widget showOnNewDay<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -162,7 +162,7 @@ abstract class OnceWidget {
 
   /// A generic callback that runs every week
   static Widget showWeekly<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -184,7 +184,7 @@ abstract class OnceWidget {
 
   /// A generic callback that runs every new month
   static Widget showMonthly<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -206,7 +206,7 @@ abstract class OnceWidget {
 
   /// A generic callback that runs every month
   static Widget showOnNewMonth<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -228,7 +228,7 @@ abstract class OnceWidget {
 
   /// A generic callback that runs yearly
   static Widget showYearly<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Widget? Function() builder,
     Widget? Function()? fallback,
@@ -251,7 +251,7 @@ abstract class OnceWidget {
   /// A generic callback that runs on a custom basis set by the user/developer
   /// by referencing a period [duration]
   static Widget showCustom<T>(
-    onceKey, {
+    String onceKey, {
     Key? key,
     required Duration duration,
     required Widget? Function() builder,
