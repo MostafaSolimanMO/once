@@ -1,3 +1,9 @@
+# 1.8.0
+- Feat: Add `runUntilDone` and `showUntilDone` to allow persistent actions until user dismissal.
+- Feat: Add `markDone` utility to manually flag keys as completed.
+- Docs: Added comprehensive Dartdocs for the new feature.
+- Tests: Added unit and widget tests for the `untilDone` feature.
+
 # 1.7.1
 - Chore: Update dependencies `package_info_plus` to `^9.0.0`
 

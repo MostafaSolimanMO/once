@@ -216,6 +216,46 @@ abstract class OnceRunner {
     return null;
   }
 
+  /// A generic callback that keeps running until the user dismisses it.
+  ///
+  /// The [callback] receives a `dismiss` callback function. When `dismiss` is called,
+  /// the [key] is marked as "done" in [SharedPreferences].
+  /// Subsequent calls with the same [key] will return the [fallback] instead of
+  /// executing the [callback].
+  ///
+  /// Useful for onboarding, one-time prompts, or tutorials that stay until
+  /// explicitly dismissed.
+  static Future<T?> runUntilDone<T>({
+    required String key,
+    required T? Function(VoidCallback dismiss) callback,
+    T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) async {
+    final preferences = await SharedPreferences.getInstance();
+
+    if (debugCallback && kDebugMode) return callback.call(() {});
+    if (debugFallback && kDebugMode) return fallback?.call();
+
+    final resolvedKey = key.contains(_keyPrefix) ? key : '$_keyPrefix$key';
+
+    if (preferences.getString(resolvedKey) == 'done') {
+      return fallback?.call();
+    }
+
+    return callback.call(() {
+      preferences.setString(resolvedKey, 'done');
+    });
+  }
+
+  /// Marks the [key] as done, so that subsequent calls to [runUntilDone]
+  /// or [showUntilDone] with this key will render their fallback.
+  static Future<void> markDone({required String key}) async {
+    final preferences = await SharedPreferences.getInstance();
+    final resolvedKey = key.contains(_keyPrefix) ? key : '$_keyPrefix$key';
+    await preferences.setString(resolvedKey, 'done');
+  }
+
   /// Clear cache for a specific [key]
   static void clear({
     required String key,

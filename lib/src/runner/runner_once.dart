@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:once/src/const.dart';
 import 'package:once/src/runner/runner.dart';
 
@@ -223,6 +224,37 @@ abstract class Once {
       debugCallback: debugCallback,
       debugFallback: debugFallback,
     );
+  }
+
+  /// A generic callback that keeps running until the user dismisses it.
+  ///
+  /// The [callback] receives a `dismiss` callback function. When `dismiss` is called,
+  /// the [key] is marked as "done" in [SharedPreferences].
+  /// Subsequent calls with the same [key] will return the [fallback] instead of
+  /// executing the [callback].
+  ///
+  /// Useful for onboarding, one-time prompts, or tutorials that stay until
+  /// explicitly dismissed.
+  static Future<T?> runUntilDone<T>(
+    String key, {
+    required T? Function(VoidCallback dismiss) callback,
+    T? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) {
+    return OnceRunner.runUntilDone(
+      key: key,
+      callback: callback,
+      fallback: fallback,
+      debugCallback: debugCallback,
+      debugFallback: debugFallback,
+    );
+  }
+
+  /// Marks the [key] as done, so that subsequent calls to [runUntilDone]
+  /// or [showUntilDone] with this key will render their fallback.
+  static Future<void> markDone({required String key}) {
+    return OnceRunner.markDone(key: key);
   }
 
   /// Clear OnceBuilder cache for a specific [key]
