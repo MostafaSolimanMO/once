@@ -4,26 +4,13 @@ abstract class Utils {
   /// Return month days with accuracy in it, taking the current month and year
   /// considering the leap year
   static int daysInMonth(final int monthNum, final int year) {
-    List<int> monthLength = List.filled(12, 0);
-    monthLength[0] = 31;
-    monthLength[2] = 31;
-    monthLength[3] = 30;
-    monthLength[4] = 31;
-    monthLength[5] = 30;
-    monthLength[6] = 31;
-    monthLength[7] = 31;
-    monthLength[8] = 30;
-    monthLength[9] = 31;
-    monthLength[10] = 30;
-    monthLength[11] = 31;
+    RangeError.checkValueInInterval(monthNum, 1, 12, 'monthNum');
 
-    if (_leapYear(year) == true) {
-      monthLength[1] = 29;
-    } else {
-      monthLength[1] = 28;
-    }
-
-    return monthLength[monthNum - 1];
+    // Create a DateTime object for the first day of the next month,
+    // then subtract one day to get the last day of the current month.
+    final firstDayOfNextMonth = DateTime(year, monthNum + 1, 1);
+    final lastDayOfCurrentMonth = firstDayOfNextMonth.subtract(Duration(days: 1));
+    return lastDayOfCurrentMonth.day;
   }
 
   static bool _leapYear(int year) {
