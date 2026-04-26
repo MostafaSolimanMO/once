@@ -9,14 +9,14 @@ Some things should happen **once**.
 * Release notes should only pop up _once every new app version comes_.
 * Etc.. _once every (Whatever you want)_.
 
-`Once` supports `runOnce`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runOnNewDay`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `runCustom`.
+`Once` supports `runOnce`, `runUntilDone`, `runOnEveryNewVersion`, `runEvery12Hours`, `runHourly`, `runDaily`, `runOnNewDay`, `runWeekly`, `runMonthly`, `runOnNewMonth`, `runYearly` and `runCustom`.
 
 Some widgets should show **once**.
 * Users should only get this alert _OnceWidget_.
 * Hello it new version widget shows _OnceWidget every new app version comes_.
 * Etc.. _OnceWidget every (Whatever you want)_.
 
-`OnceWidgets` supports `showOnce`, `showOnEveryNewVersion`, `showEvery12Hours`, `showHourly`, `showDaily`, `showOnNewDay`, `showWeekly`, `showMonthly`, `showOnNewMonth`, `showYearly` and `showCustom`.
+`OnceWidgets` supports `showOnce`, `showUntilDone`, `showOnEveryNewVersion`, `showEvery12Hours`, `showHourly`, `showDaily`, `showOnNewDay`, `showWeekly`, `showMonthly`, `showOnNewMonth`, `showYearly` and `showCustom`.
 
 # Usage
 
@@ -53,6 +53,20 @@ if (!rated) {
 }
 ```
 
+Or maybe you want to show a feature prompt until the user explicitly dismisses it:
+```dart
+Once.runUntilDone("feature_prompt",
+  callback: (dismiss) { 
+     /* Show feature prompt dialog */ 
+     // Call dismiss() when the user clicks "Got it"
+     dismiss();
+  },
+  fallback: () {
+    /* Feature already acknowledged */
+  },
+);
+```
+
 ## OnceWidget
 
 **Mainly builder functions consists of builders and fallbacks**
@@ -82,11 +96,32 @@ OnceWidget.showWeekly("weekWidget",
 
 ```
 
+Or maybe you want to show a banner until the user dismisses it:
+```dart
+OnceWidget.showUntilDone("onboarding_banner",
+  builder: (dismiss) {
+     return Row(
+       children: [
+         Text('New feature available!'),
+         ElevatedButton(
+           onPressed: dismiss, // Will not show again after being clicked
+           child: Text('Got it'),
+         ),
+       ],
+     );
+   },
+  fallback: () {
+     return SizedBox.shrink();
+   },
+);
+```
+
 ## Additional
 
 ### Functions
 * `clear` removes the `Once` or `OnceWidget` data for a specific `key`.
 * `clearAll` removes all the `Once` and `OnceWidget` data.
+* `markDone` manually flags a key as completed for `untilDone` operations.
 
 ### Parameters
 * `debugCallback` used to debug the `callback` function.

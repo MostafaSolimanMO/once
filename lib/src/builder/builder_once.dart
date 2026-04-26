@@ -272,6 +272,42 @@ abstract class OnceWidget {
     );
   }
 
+  /// A generic builder that keeps rendering until the user dismisses it.
+  ///
+  /// The [builder] receives a `dismiss` callback function. When `dismiss` is called,
+  /// the [onceKey] is marked as "done" in [SharedPreferences].
+  /// Subsequent builds with the same [onceKey] will render the [fallback] instead
+  /// of executing the [builder].
+  ///
+  /// Useful for onboarding banners, "Rate Us" prompts, or one-time tutorials
+  /// that stay visible until explicitly closed by the user.
+  static Widget showUntilDone(
+    String onceKey, {
+    Key? key,
+    required Widget? Function(VoidCallback dismiss) builder,
+    Widget? Function()? fallback,
+    bool debugCallback = false,
+    bool debugFallback = false,
+  }) {
+    return OnceBuilder.build(
+      key,
+      OnceRunner.runUntilDone(
+        key: onceKey,
+        callback: builder,
+        fallback: fallback,
+        debugCallback: debugCallback,
+        debugFallback: debugFallback,
+      ),
+      fallback,
+    );
+  }
+
+  /// Marks the [key] as done, so that subsequent calls to [runUntilDone]
+  /// or [showUntilDone] with this key will render their fallback.
+  static Future<void> markDone({required String key}) {
+    return OnceRunner.markDone(key: key);
+  }
+
   /// Clear OnceBuilder cache for a specific [key]
   static void clear({
     required String key,
