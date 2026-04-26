@@ -1,5 +1,5 @@
 # 1.8.0
-- Feat: Add `runUntilDone` and `showUntilDone` to allow persistent actions until user dismissal.
+- Feat: Add `runUntilDone` and `showUntilDone` to allow persistent actions until user dismissal. (Thanks to [@MohamedGawdat](https://github.com/MohamedGawdat) for the idea and initial implementation!)
 - Feat: Add `markDone` utility to manually flag keys as completed.
 - Refactor: Replace manual leap-year logic with DateTime-based calculation for daysInMonth.
 - Fix: Resolve static analysis missing type annotations.
