@@ -429,6 +429,7 @@ void main() {
         },
       );
       expect(result1, 'callback');
+      expect(callbackCalled, true);
 
       callbackCalled = false;
       fallbackCalled = false;
@@ -445,6 +446,7 @@ void main() {
         },
       );
       expect(result2, 'fallback');
+      expect(fallbackCalled, true);
 
       // Simulate different day
       final prefs = await SharedPreferences.getInstance();
@@ -464,6 +466,7 @@ void main() {
         },
       );
       expect(result3, 'callback');
+      expect(callbackCalled, true);
     });
 
     test('run on start of month (duration >0 <12) works', () async {
@@ -484,6 +487,7 @@ void main() {
         },
       );
       expect(result1, 'callback');
+      expect(callbackCalled, true);
 
       callbackCalled = false;
       fallbackCalled = false;
@@ -500,6 +504,7 @@ void main() {
         },
       );
       expect(result2, 'fallback');
+      expect(fallbackCalled, true);
 
       // Simulate different month
       final prefs = await SharedPreferences.getInstance();
@@ -519,6 +524,7 @@ void main() {
         },
       );
       expect(result3, 'callback');
+      expect(callbackCalled, true);
     });
 
     test('run custom duration works', () async {
@@ -538,6 +544,7 @@ void main() {
         },
       );
       expect(result1, 'callback');
+      expect(callbackCalled, true);
 
       callbackCalled = false;
       fallbackCalled = false;
@@ -554,6 +561,7 @@ void main() {
         },
       );
       expect(result2, 'fallback');
+      expect(fallbackCalled, true);
 
       // Wait for 1.1 seconds
       await Future.delayed(Duration(milliseconds: 1100));
@@ -572,6 +580,7 @@ void main() {
         },
       );
       expect(result3, 'callback');
+      expect(callbackCalled, true);
     });
   });
 }
