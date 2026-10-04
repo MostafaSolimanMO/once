@@ -1,3 +1,8 @@
+# 1.8.1
+- Chore: Widen `package_info_plus` constraint to `>=9.0.0 <11.0.0` to support 10.x and fix version solving conflicts with newer Flutter projects
+- Chore: Update `flutter_lints` to `^6.0.0` and require Dart 3.8 or higher
+- Chore: Modernize example app SDK constraint to Dart 3
+
 # 1.8.0
 - Feat: Add `runUntilDone` and `showUntilDone` to allow persistent actions until user dismissal. (Thanks to [@MohamedGawdat](https://github.com/MohamedGawdat) for the idea and initial implementation!)
 - Feat: Add `markDone` utility to manually flag keys as completed.
